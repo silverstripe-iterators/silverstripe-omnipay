@@ -13,7 +13,7 @@ class Payable extends DataExtension {
 
 	public function updateCMSFields(FieldList $fields) {
 		$fields->addFieldToTab("Root.Payments",
-			GridField::create("Payments", "Payments", $this->owner->Payments(),
+			$grid = GridField::create("Payments", "Payments", $this->owner->Payments(),
 				GridFieldConfig_RecordEditor::create()
 					->removeComponentsByType('GridFieldAddNewButton')
 					->removeComponentsByType('GridFieldDeleteAction')
@@ -21,6 +21,8 @@ class Payable extends DataExtension {
 					->removeComponentsByType('GridFieldPageCount')
 			)
 		);
+
+		$grid->setModelClass('Payment');
 	}
 
 	public function TotalPaid() {
